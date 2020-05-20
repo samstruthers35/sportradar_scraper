@@ -37,6 +37,38 @@ Lets do a quick double check to make sure everything makes sense. For this we wi
 
 **pass_checks <- sports_radar_pbp %>% filter(pass == 1, stat_type == "pass", sack.x == 0, qb_scramble == 0) %>% group_by(passer) %>% summarize(plays = n(), yards_gained = sum(yards_gained,na.rm = TRUE)) %>% filter(plays>50) %>% arrange(desc(yards_gained))**
 
+Our Results come out as:
 
+| passer        | plays           | yards_gained  |
+| ------------- |:-------------:| -----:|
+| J.Winston   | 617 | 5109 |
+| D. Prescott | 593 | 4894 |
+|J.Goff   |    622     |    4638|
+|P.Rivers   |  584      |   4615|
+|M.Ryan    |   612        | 4466|
+| R.Wilson    | 512      |   4110|
+ | T.Brady   |   607         4057|
+ | C.Wentz   |   605         4039|
+ | P.Mahomes |   481         4021|
+| D.Carr     |  508         4015|
 
->>>>>>> 429965a714996c3f60a0c67bd76f612a3de2d372
+Now lets compare to what is in our regular nflstatr pbp by running the code below. On top of our original filters we had to take out 2pt conversions and any Rush plays (such as fumbles lost) that were attributed to passes. These are classified as different stat_types in SportRadar  :
+
+**all_nfl_pbp %>% filter(pass == 1,  sack == 0, qb_scramble == 0, play_type != "no_play",play_type_nfl!="PAT2", play_type_nfl!="RUSH") %>% group_by(passer) %>% summarize(plays = n(), yards_gained = sum(yards_gained,na.rm = TRUE)) %>% filter(plays>50) %>% arrange(desc(yards_gained))**
+
+And here are our results:
+| passer        | plays           | yards_gained  |
+| ------------- |:-------------:| -----:|
+| J.Winston  |  617      |   5109|
+ | D.Prescott  | 593      |   4902|
+ | J.Goff    |   622       |  4638|
+ | P.Rivers   |  583        | 4615|
+ | M.Ryan     |  613       |  4466|
+ | R.Wilson   |  512       |  4110|
+ | T.Brady   |   607       |  4057|
+ | C.Wentz  |    605       |  4039|
+ | P.Mahomes    481        | 4021|
+| D.Carr    |   509        | 4015|
+
+Awesome! We are missing one or two plays from a qb, but overall we are 99 percent of the way there!
+
