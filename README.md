@@ -24,7 +24,9 @@ Heres an example of pre filtered data:
 
 Obviously, once we filter to our stat_type we will be able to treat it as we would with the traditional nflstatR data.
 
-Lets do a quick double check to make sure everything makes sense. For this we will check our QB stats against their real life stats. Heres our code for the check:
+Lets do a quick double check to make sure everything makes sense. For this we will check our QB stats against what nflstatR has. Heres our code for the check:
 
 **pass_checks <- sports_radar_pbp %>% filter(pass == 1, stat_type == "pass", sack.x == 0, qb_scramble == 0) %>% group_by(passer) %>% summarize(plays = n(), yards_gained = sum(yards_gained,na.rm = TRUE)) %>% filter(plays>50) %>% arrange(desc(yards_gained))**
+
+
 
