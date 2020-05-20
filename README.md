@@ -47,10 +47,10 @@ Our Results come out as:
 |P.Rivers   |  584      |   4615|
 |M.Ryan    |   612        | 4466|
 | R.Wilson    | 512      |   4110|
- | T.Brady   |   607         4057|
- | C.Wentz   |   605         4039|
- | P.Mahomes |   481         4021|
-| D.Carr     |  508         4015|
+ | T.Brady   |   607      |   4057|
+ | C.Wentz   |   605      |   4039|
+ | P.Mahomes |   481     |    4021|
+| D.Carr     |  508      |   4015|
 
 Now lets compare to what is in our regular nflstatr pbp by running the code below. On top of our original filters we had to take out 2pt conversions and any Rush plays (such as fumbles lost) that were attributed to passes. These are classified as different stat_types in SportRadar  :
 
@@ -67,7 +67,7 @@ And here are our results:
  | R.Wilson   |  512       |  4110|
  | T.Brady   |   607       |  4057|
  | C.Wentz  |    605       |  4039|
- | P.Mahomes    481        | 4021|
+ | P.Mahomes |   481        | 4021|
 | D.Carr    |   509        | 4015|
 
 Awesome! We are missing one or two plays from a qb, but overall we are 99 percent of the way there!
